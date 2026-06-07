@@ -1,37 +1,37 @@
 // Здесь менять тексты и добавлять переводы.
 const TRANSLATIONS = {
   de: {
-    common: { cta: "Kostenlos registrieren", locked: "Zugang nach Registrierung", premium: "Premium" },
+    common: { cta: "Kostenlos registrieren", locked: "Nach Registrierung freigeschaltet", premium: "Premium" },
     header: { statusOnline: "{count} online jetzt" },
     hero: {
       kicker: "Private Dating Area 18+",
       title: "Tausende sind gerade online",
-      subtitle: "Profile und Live-Chats freischalten.",
-      microcopy: "Keine Formulare auf dieser Seite. Ein Klick führt direkt zur Registrierung.",
+      subtitle: "Echte Profile, echte Gespräche – schau rein, wer gerade da ist.",
+      microcopy: "",
       valueProfiles: "Private Profile",
       valueLive: "LIVE-Videochats",
       valueOnline: "Aktive Nutzer online",
       socialProof: "{online} online · {profiles} aktive Profile"
     },
-    stats: { kicker: "Aktivität jetzt", title: "Heute ist bereits viel los", profiles: "aktive Profile", online: "Nutzer online", videos: "Live-Videochats" },
-    content: { kicker: "Profile & LIVE", title: "Verfügbare Profile und Live-Chats", subtitle: "Fotos und Live-Vorschauen sind geschützt. Voller Zugang wird nach der Registrierung freigeschaltet.", profilesMore: "{count} Profile nach Registrierung verfügbar" },
+    stats: { kicker: "Aktivität jetzt", title: "Heute ist schon viel los", profiles: "aktive Profile", online: "Nutzer online", videos: "Live-Videochats" },
+    content: { kicker: "Profile & LIVE", title: "Verfügbare Profile und Live-Chats", subtitle: "Fotos und Live-Vorschauen sind geschützt. Nach der Registrierung siehst du alles.", profilesMore: "{count} Profile nach Registrierung verfügbar" },
     inlineCta: {
-      first: { title: "Tausende aktive Mitglieder sind gerade online", subtitle: "Voller Zugang wird nach der Registrierung freigeschaltet.", cta: "Kostenlos registrieren" },
-      second: { title: "Hunderte Live-Videochats verfügbar", subtitle: "Private Räume und vollständige Profile freischalten.", cta: "Zugang öffnen" }
+      first: { title: "Gerade sind tausende Mitglieder online", subtitle: "Kostenlos registrieren und alle Profile sowie Live-Chats entdecken.", cta: "Kostenlos registrieren" },
+      second: { title: "Hunderte Live-Chats laufen gerade", subtitle: "Ein Klick zur Registrierung – danach hast du vollen Zugang.", cta: "Zugang öffnen" }
     },
-    profiles: { kicker: "Geschlossene Profile", title: "Verfügbare Profile", subtitle: "Die Vorschau wird bei jedem Besuch neu gemischt. Details und Fotos sind nach der Registrierung sichtbar." },
-    videos: { kicker: "LIVE", title: "Live-Videochats", subtitle: "Aktive Vorschauen laufen ohne Ton. Voller Zugang wird nach der Registrierung freigegeben." },
+    profiles: { kicker: "Geschlossene Profile", title: "Verfügbare Profile", subtitle: "Bei jedem Besuch neu gemischt. Fotos und Details nach der Registrierung sichtbar." },
+    videos: { kicker: "LIVE", title: "Live-Videochats", subtitle: "Vorschauen laufen ohne Ton. Voller Zugang nach der Registrierung." },
     benefits: {
       kicker: "Warum registrieren",
-      title: "Schneller, diskreter Zugang",
+      title: "Diskret, schnell und unkompliziert",
       verifiedTitle: "Geprüfte Profile",
-      verifiedText: "Profile werden kuratiert, damit die Vorschau sauber und glaubwürdig bleibt.",
-      safeTitle: "Datensicherheit",
-      safeText: "Der Zugriff ist privat aufgebaut und vermeidet unnötige Schritte.",
+      verifiedText: "Echte Mitglieder mit durchdachten Profilen – für ein seriöses Dating-Erlebnis.",
+      safeTitle: "Datenschutz",
+      safeText: "Deine Daten bleiben privat. Kein Spam, kein Druck – nur diskreter Zugang.",
       fastTitle: "Schnelle Registrierung",
-      fastText: "Ein klarer Weg: ansehen, auswählen, registrieren und Zugang erhalten."
+      fastText: "In wenigen Minuten registriert – und du kannst sofort loslegen."
     },
-    final: { kicker: "Bereit?", title: "Schalte Profile und Live-Chats frei", subtitle: "Registriere dich jetzt und öffne den vollständigen Bereich." },
+    final: { kicker: "Bereit?", title: "Dein nächstes Match könnte schon online sein", subtitle: "Jetzt kostenlos registrieren und Profile sowie Live-Chats ohne Wartezeit entdecken." },
     footer: { note: "18+ | Diskrete Dating-Vorschau" }
   },
   pl: {
@@ -40,32 +40,32 @@ const TRANSLATIONS = {
     hero: {
       kicker: "Prywatna strefa dating 18+",
       title: "Tysiące osób jest teraz online",
-      subtitle: "Odblokuj profile i czaty live.",
-      microcopy: "Bez formularzy na tej stronie. Kliknięcie prowadzi bezpośrednio do rejestracji.",
+      subtitle: "Sprawdź, kto jest online – profile i czaty live czekają na Ciebie.",
+      microcopy: "",
       valueProfiles: "Profile użytkowników",
       valueLive: "Czaty LIVE",
       valueOnline: "Aktywni użytkownicy",
       socialProof: "{online} online · {profiles} aktywnych profili"
     },
-    stats: { kicker: "Aktywność teraz", title: "Dzisiaj dzieje się naprawdę dużo", profiles: "aktywne profile", online: "użytkowników online", videos: "czaty wideo live" },
-    content: { kicker: "Profile i LIVE", title: "Dostępne profile i czaty live", subtitle: "Zdjęcia oraz podglądy live są zabezpieczone. Pełny dostęp zostanie odblokowany po rejestracji.", profilesMore: "{count} profili dostępnych po rejestracji" },
+    stats: { kicker: "Aktywność teraz", title: "Dziś naprawdę dużo się dzieje", profiles: "aktywne profile", online: "użytkowników online", videos: "czaty wideo live" },
+    content: { kicker: "Profile i LIVE", title: "Dostępne profile i czaty live", subtitle: "Zdjęcia i podglądy live są chronione. Po rejestracji zobaczysz wszystko.", profilesMore: "{count} profili dostępnych po rejestracji" },
     inlineCta: {
-      first: { title: "Tysiące aktywnych użytkowników jest teraz online", subtitle: "Pełny dostęp odblokujesz po rejestracji.", cta: "Zarejestruj się za darmo" },
-      second: { title: "Setki czatów wideo na żywo", subtitle: "Odblokuj prywatne pokoje i pełne profile.", cta: "Otwórz dostęp" }
+      first: { title: "Tysiące osób jest teraz online", subtitle: "Załóż darmowe konto i odkryj wszystkie profile oraz czaty live.", cta: "Zarejestruj się za darmo" },
+      second: { title: "Setki czatów wideo już trwa", subtitle: "Zarejestruj się i odblokuj pełny dostęp w kilka chwil.", cta: "Otwórz dostęp" }
     },
-    profiles: { kicker: "Zamknięte profile", title: "Dostępne profile", subtitle: "Lista miesza się przy każdej wizycie. Szczegóły i zdjęcia są widoczne po rejestracji." },
-    videos: { kicker: "LIVE", title: "Czaty wideo live", subtitle: "Podglądy działają bez dźwięku. Pełny dostęp zostanie odblokowany po rejestracji." },
+    profiles: { kicker: "Zamknięte profile", title: "Dostępne profile", subtitle: "Lista zmienia się przy każdej wizycie. Zdjęcia i szczegóły widoczne po rejestracji." },
+    videos: { kicker: "LIVE", title: "Czaty wideo live", subtitle: "Podglądy bez dźwięku. Pełny dostęp po rejestracji." },
     benefits: {
       kicker: "Dlaczego warto",
-      title: "Szybki, dyskretny dostęp",
+      title: "Dyskretnie, szybko i bez zbędnych kroków",
       verifiedTitle: "Sprawdzone profile",
-      verifiedText: "Karty są przygotowane tak, aby wyglądały wiarygodnie i naturalnie.",
-      safeTitle: "Bezpieczeństwo danych",
-      safeText: "Ścieżka dostępu jest prosta i bez zbędnych kroków.",
+      verifiedText: "Prawdziwi użytkownicy i sensowne profile – bez fejków i pustych kont.",
+      safeTitle: "Prywatność",
+      safeText: "Twoje dane zostają u Ciebie. Bez spamu i zbędnych formalności.",
       fastTitle: "Szybka rejestracja",
-      fastText: "Oglądasz, wybierasz, rejestrujesz się i otrzymujesz dostęp."
+      fastText: "Kilka kliknięć i masz dostęp – od razu możesz przeglądać profile."
     },
-    final: { kicker: "Gotowe?", title: "Odblokuj profile i czaty live", subtitle: "Zarejestruj się teraz i przejdź do pełnej strefy." },
+    final: { kicker: "Gotowe?", title: "Twoje następne spotkanie może być już online", subtitle: "Załóż darmowe konto i od razu przeglądaj profile oraz czaty live." },
     footer: { note: "18+ | Dyskretny podgląd dating" }
   },
   en: {
@@ -74,8 +74,8 @@ const TRANSLATIONS = {
     hero: {
       kicker: "Private dating area 18+",
       title: "Thousands Are Online Right Now",
-      subtitle: "Unlock profiles and live chats.",
-      microcopy: "No forms on this page. Every main action leads straight to registration.",
+      subtitle: "Real profiles, real connections — see who's online and start exploring.",
+      microcopy: "",
       valueProfiles: "Member profiles",
       valueLive: "LIVE video chats",
       valueOnline: "Active members online",
@@ -84,22 +84,22 @@ const TRANSLATIONS = {
     stats: { kicker: "Live activity", title: "Fresh activity is happening now", profiles: "active profiles", online: "users online", videos: "live video chats" },
     content: { kicker: "Profiles & LIVE", title: "Available profiles and live chats", subtitle: "Photos and live previews are protected. Full access opens after registration.", profilesMore: "{count} profiles available after registration" },
     inlineCta: {
-      first: { title: "Thousands of active members online now", subtitle: "Full access unlocks after registration.", cta: "Register for Free" },
-      second: { title: "Hundreds of live video chats available", subtitle: "Unlock private rooms and full profiles.", cta: "Open Access" }
+      first: { title: "Thousands of members are online right now", subtitle: "Register for free and explore every profile and live chat.", cta: "Register for Free" },
+      second: { title: "Hundreds of live video chats are running now", subtitle: "One quick signup — then full access is yours.", cta: "Open Access" }
     },
     profiles: { kicker: "Locked profiles", title: "Available profiles", subtitle: "Profiles are shuffled on each visit. Photos and details unlock after registration." },
-    videos: { kicker: "LIVE", title: "Live video chats", subtitle: "Muted animated previews are visible now. Full access opens after registration." },
+    videos: { kicker: "LIVE", title: "Live video chats", subtitle: "Muted previews are visible now. Full access opens after registration." },
     benefits: {
       kicker: "Why join",
       title: "Fast, private access",
       verifiedTitle: "Verified profiles",
-      verifiedText: "Profile cards are curated to keep the preview clean and believable.",
+      verifiedText: "Real members with thoughtful profiles — built for genuine connections.",
       safeTitle: "Data safety",
-      safeText: "The path is private, simple, and avoids unnecessary collection steps.",
+      safeText: "Your privacy comes first. No spam, no hassle — just discreet access.",
       fastTitle: "Quick registration",
-      fastText: "A simple flow: preview, choose, register, and unlock access."
+      fastText: "Sign up in minutes and start browsing right away."
     },
-    final: { kicker: "Ready?", title: "Unlock profiles and live chats", subtitle: "Register now and open the full dating area." },
+    final: { kicker: "Ready?", title: "Your next match could be online now", subtitle: "Create your free account and start exploring profiles and live chats today." },
     footer: { note: "18+ | Discreet dating preview" }
   },
   fr: {
@@ -108,32 +108,32 @@ const TRANSLATIONS = {
     hero: {
       kicker: "Espace dating privé 18+",
       title: "Des milliers de personnes en ligne maintenant",
-      subtitle: "Déverrouillez les profils et les chats live.",
-      microcopy: "Aucun formulaire ici. Chaque action principale mène directement à l'inscription.",
+      subtitle: "De vrais profils, de vraies rencontres — voyez qui est en ligne.",
+      microcopy: "",
       valueProfiles: "Profils membres",
       valueLive: "Chats vidéo LIVE",
       valueOnline: "Membres actifs en ligne",
       socialProof: "{online} en ligne · {profiles} profils actifs"
     },
-    stats: { kicker: "Activité en direct", title: "L'activité du jour est déjà lancée", profiles: "profils actifs", online: "utilisateurs en ligne", videos: "chats vidéo live" },
+    stats: { kicker: "Activité en direct", title: "L'activité est déjà bien lancée", profiles: "profils actifs", online: "utilisateurs en ligne", videos: "chats vidéo live" },
     content: { kicker: "Profils & LIVE", title: "Profils disponibles et chats live", subtitle: "Les photos et aperçus live sont protégés. L'accès complet s'ouvre après inscription.", profilesMore: "{count} profils disponibles après inscription" },
     inlineCta: {
-      first: { title: "Des milliers de membres actifs en ligne", subtitle: "L'accès complet s'ouvre après l'inscription.", cta: "S'inscrire gratuitement" },
-      second: { title: "Des centaines de chats vidéo live", subtitle: "Déverrouillez les salons privés et les profils complets.", cta: "Ouvrir l'accès" }
+      first: { title: "Des milliers de membres sont en ligne", subtitle: "Inscrivez-vous gratuitement et découvrez tous les profils et chats live.", cta: "S'inscrire gratuitement" },
+      second: { title: "Des centaines de chats vidéo live en cours", subtitle: "Une inscription rapide — puis accès complet.", cta: "Ouvrir l'accès" }
     },
-    profiles: { kicker: "Profils fermés", title: "Profils disponibles", subtitle: "La liste est mélangée à chaque visite. Photos et détails sont visibles après inscription." },
-    videos: { kicker: "LIVE", title: "Chats vidéo live", subtitle: "Les aperçus animés sont sans son. L'accès complet est ouvert après inscription." },
+    profiles: { kicker: "Profils fermés", title: "Profils disponibles", subtitle: "La liste change à chaque visite. Photos et détails visibles après inscription." },
+    videos: { kicker: "LIVE", title: "Chats vidéo live", subtitle: "Aperçus sans son. Accès complet après inscription." },
     benefits: {
       kicker: "Pourquoi rejoindre",
       title: "Un accès rapide et discret",
       verifiedTitle: "Profils vérifiés",
-      verifiedText: "Les cartes sont préparées pour garder une expérience claire et crédible.",
-      safeTitle: "Sécurité des données",
-      safeText: "Le parcours reste privé, simple et sans étapes inutiles.",
+      verifiedText: "De vrais membres avec des profils soignés — pour des rencontres sérieuses.",
+      safeTitle: "Confidentialité",
+      safeText: "Vos données restent privées. Pas de spam, pas de pression — juste un accès discret.",
       fastTitle: "Inscription rapide",
-      fastText: "Un chemin direct: aperçu, choix, inscription, accès."
+      fastText: "Inscrivez-vous en quelques minutes et commencez tout de suite."
     },
-    final: { kicker: "Prêt?", title: "Déverrouillez les profils et les chats live", subtitle: "Inscrivez-vous maintenant pour ouvrir l'espace complet." },
+    final: { kicker: "Prêt?", title: "Votre prochaine rencontre est peut-être déjà en ligne", subtitle: "Inscrivez-vous gratuitement et explorez profils et chats live dès maintenant." },
     footer: { note: "18+ | Aperçu dating discret" }
   },
   it: {
@@ -142,8 +142,8 @@ const TRANSLATIONS = {
     hero: {
       kicker: "Area dating privata 18+",
       title: "Migliaia di persone online adesso",
-      subtitle: "Sblocca profili e live chat.",
-      microcopy: "Nessun modulo in questa pagina. Ogni azione principale porta alla registrazione.",
+      subtitle: "Profili veri, incontri veri — scopri chi è online in questo momento.",
+      microcopy: "",
       valueProfiles: "Profili membri",
       valueLive: "Videochat LIVE",
       valueOnline: "Membri attivi online",
@@ -152,22 +152,22 @@ const TRANSLATIONS = {
     stats: { kicker: "Attività live", title: "Oggi c'è già molta attività", profiles: "profili attivi", online: "utenti online", videos: "videochat live" },
     content: { kicker: "Profili e LIVE", title: "Profili disponibili e live chat", subtitle: "Foto e anteprime live sono protette. L'accesso completo si apre dopo la registrazione.", profilesMore: "{count} profili disponibili dopo la registrazione" },
     inlineCta: {
-      first: { title: "Migliaia di membri attivi online ora", subtitle: "L'accesso completo si apre dopo la registrazione.", cta: "Registrati gratis" },
-      second: { title: "Centinaia di videochat live disponibili", subtitle: "Sblocca stanze private e profili completi.", cta: "Apri l'accesso" }
+      first: { title: "Migliaia di membri sono online ora", subtitle: "Registrati gratis e scopri tutti i profili e le live chat.", cta: "Registrati gratis" },
+      second: { title: "Centinaia di videochat live sono attive", subtitle: "Una registrazione veloce — poi accesso completo.", cta: "Apri l'accesso" }
     },
     profiles: { kicker: "Profili bloccati", title: "Profili disponibili", subtitle: "Le schede cambiano a ogni visita. Foto e dettagli si sbloccano dopo la registrazione." },
-    videos: { kicker: "LIVE", title: "Videochat live", subtitle: "Le anteprime animate sono senza audio. L'accesso completo arriva dopo la registrazione." },
+    videos: { kicker: "LIVE", title: "Videochat live", subtitle: "Anteprime senza audio. Accesso completo dopo la registrazione." },
     benefits: {
       kicker: "Perché unirti",
       title: "Accesso rapido e discreto",
       verifiedTitle: "Profili verificati",
-      verifiedText: "Le schede sono curate per mantenere la preview pulita e credibile.",
-      safeTitle: "Sicurezza dei dati",
-      safeText: "Il percorso è privato, semplice e senza passaggi inutili.",
+      verifiedText: "Membri reali con profili curati — per incontri autentici.",
+      safeTitle: "Privacy",
+      safeText: "I tuoi dati restano privati. Niente spam, niente pressione — solo accesso discreto.",
       fastTitle: "Registrazione veloce",
-      fastText: "Flusso diretto: guarda, scegli, registrati e sblocca."
+      fastText: "Registrati in pochi minuti e inizia subito a esplorare."
     },
-    final: { kicker: "Pronto?", title: "Sblocca profili e live chat", subtitle: "Registrati ora e accedi all'area completa." },
+    final: { kicker: "Pronto?", title: "Il tuo prossimo incontro potrebbe essere già online", subtitle: "Registrati gratis e scopri profili e live chat senza attese." },
     footer: { note: "18+ | Anteprima dating discreta" }
   }
 };
