@@ -1449,10 +1449,10 @@ main > .content-wall {
     margin-bottom: 0.85rem;
   }
 
-  .final-cta {
+  main > section.final-cta {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 1.5rem 2rem;
-    padding: 1.75rem 2rem;
+    padding: 2.25rem 2.5rem;
     align-items: center;
     overflow: hidden;
   }
