@@ -122,12 +122,128 @@
     bindRegisterLinks();
   }
 
+  const liveStats = {
+    online: (CONFIG.socialProof && CONFIG.socialProof.online) || 3916,
+    profiles: 12840,
+    videos: 724
+  };
+
+  const LIVE_LIMITS = {
+    online: { min: 3860, max: 3970, delta: 5 },
+    profiles: { min: 12780, max: 12920, delta: 3 },
+    videos: { min: 708, max: 742, delta: 3 }
+  };
+
+  let liveCounterTimer = null;
+
+  function formatLiveCount(value) {
+    return value.toLocaleString(currentLanguage);
+  }
+
+  function parseLiveCount(text) {
+    return Number(String(text).replace(/[^\d]/g, "")) || 0;
+  }
+
   function renderHeaderStatus() {
     const el = document.getElementById("headerStatusText");
-    if (!el || !CONFIG.socialProof) return;
+    if (!el) return;
 
-    const count = CONFIG.socialProof.online.toLocaleString(currentLanguage);
+    const count = formatLiveCount(liveStats.online);
     el.textContent = t("header.statusOnline").replace("{count}", count);
+  }
+
+  function setCounterText(el, value) {
+    el.textContent = formatLiveCount(value);
+  }
+
+  function animateCounterValue(el, from, to, duration = 520) {
+    if (from === to) {
+      setCounterText(el, to);
+      return;
+    }
+
+    const start = performance.now();
+
+    function frame(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 2);
+      const current = Math.round(from + (to - from) * eased);
+      setCounterText(el, current);
+      if (progress < 1) requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  function updateLiveCounterDisplay(key, animate) {
+    const value = liveStats[key];
+
+    if (key === "online") {
+      renderHeaderStatus();
+    }
+
+    document.querySelectorAll(`[data-live-counter="${key}"]`).forEach((el) => {
+      if (!el.dataset.done) return;
+
+      const current = parseLiveCount(el.textContent);
+      if (!animate) {
+        setCounterText(el, value);
+        return;
+      }
+      animateCounterValue(el, current, value);
+    });
+  }
+
+  function bumpLiveCounter(key) {
+    const limits = LIVE_LIMITS[key];
+    const delta = Math.floor(Math.random() * (limits.delta * 2 + 1)) - limits.delta;
+    if (delta === 0) return;
+
+    liveStats[key] = Math.max(limits.min, Math.min(limits.max, liveStats[key] + delta));
+    updateLiveCounterDisplay(key, true);
+  }
+
+  function scheduleLiveCounters() {
+    clearTimeout(liveCounterTimer);
+    if (document.hidden) return;
+
+    const delay = 10000 + Math.random() * 10000;
+    liveCounterTimer = setTimeout(() => {
+      bumpLiveCounter("online");
+      if (Math.random() < 0.5) bumpLiveCounter("profiles");
+      if (Math.random() < 0.5) bumpLiveCounter("videos");
+      scheduleLiveCounters();
+    }, delay);
+  }
+
+  function refreshLiveCounterFormatting() {
+    renderHeaderStatus();
+    ["profiles", "online", "videos"].forEach((key) => {
+      document.querySelectorAll(`[data-live-counter="${key}"]`).forEach((el) => {
+        if (el.dataset.done) setCounterText(el, liveStats[key]);
+      });
+    });
+  }
+
+  function initLiveCounters() {
+    document.querySelectorAll("[data-live-counter]").forEach((el) => {
+      const key = el.dataset.liveCounter;
+      if (key && liveStats[key] !== undefined) {
+        liveStats[key] = Number(el.dataset.counter) || liveStats[key];
+      }
+    });
+
+    renderHeaderStatus();
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        clearTimeout(liveCounterTimer);
+        return;
+      }
+      scheduleLiveCounters();
+    });
+
+    scheduleLiveCounters();
   }
 
   function renderHeroPreview() {
@@ -176,7 +292,7 @@
       item.setAttribute("aria-selected", isActive ? "true" : "false");
     });
 
-    renderHeaderStatus();
+    refreshLiveCounterFormatting();
   }
 
   function createCard(item, animationIndex) {
@@ -371,18 +487,19 @@
   }
 
   function animateCounters() {
-    const counters = document.querySelectorAll("[data-counter]");
+    const counters = document.querySelectorAll("[data-live-counter]");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting || entry.target.dataset.done) return;
         entry.target.dataset.done = "true";
-        const end = Number(entry.target.dataset.counter);
+        const key = entry.target.dataset.liveCounter;
+        const end = liveStats[key] || Number(entry.target.dataset.counter);
         const startTime = performance.now();
 
         function frame(now) {
           const progress = Math.min((now - startTime) / 1400, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
-          entry.target.textContent = Math.floor(end * eased).toLocaleString(currentLanguage);
+          setCounterText(entry.target, Math.floor(end * eased));
           if (progress < 1) requestAnimationFrame(frame);
         }
 
@@ -485,6 +602,7 @@
     renderContentWall();
     bindLanguageDropdown();
     bindStickyCta();
+    initLiveCounters();
     animateCounters();
     revealSections();
   });
