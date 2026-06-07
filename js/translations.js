@@ -1,12 +1,17 @@
 // Здесь менять тексты и добавлять переводы.
 const TRANSLATIONS = {
   de: {
-    common: { cta: "Kostenlos registrieren", locked: "Zugang nach Registrierung" },
+    common: { cta: "Kostenlos registrieren", locked: "Zugang nach Registrierung", premium: "Premium" },
+    header: { statusOnline: "{count} online jetzt" },
     hero: {
       kicker: "Private Dating Area 18+",
       title: "Entdecke diskrete Profile und Live-Chats in einer Premium-Umgebung",
       subtitle: "Sieh aktive Profile, Live-Vorschauen und aktuelle Aktivität. Voller Zugriff wird nach der Registrierung freigeschaltet.",
-      microcopy: "Keine Formulare auf dieser Seite. Ein Klick führt direkt zur Registrierung."
+      microcopy: "Keine Formulare auf dieser Seite. Ein Klick führt direkt zur Registrierung.",
+      valueProfiles: "Private Profile",
+      valueLive: "LIVE-Videochats",
+      valueOnline: "Aktive Nutzer online",
+      socialProof: "{online} online · {profiles} aktive Profile"
     },
     stats: { kicker: "Aktivität jetzt", title: "Heute ist bereits viel los", profiles: "aktive Profile", online: "Nutzer online", videos: "Live-Videochats" },
     content: { kicker: "Profile & LIVE", title: "Verfügbare Profile und Live-Chats", subtitle: "Fotos und Live-Vorschauen sind geschützt. Voller Zugang wird nach der Registrierung freigeschaltet." },
@@ -26,12 +31,17 @@ const TRANSLATIONS = {
     footer: { note: "18+ | Diskrete Dating-Vorschau" }
   },
   pl: {
-    common: { cta: "Zarejestruj się za darmo", locked: "Dostęp po rejestracji" },
+    common: { cta: "Zarejestruj się za darmo", locked: "Dostęp po rejestracji", premium: "Premium" },
+    header: { statusOnline: "{count} online teraz" },
     hero: {
       kicker: "Prywatna strefa dating 18+",
       title: "Odkryj ukryte profile i czaty live w nowoczesnym stylu premium",
       subtitle: "Zobacz aktywne profile, podglądy live i aktualną aktywność. Pełny dostęp otrzymasz po rejestracji.",
-      microcopy: "Bez formularzy na tej stronie. Kliknięcie prowadzi bezpośrednio do rejestracji."
+      microcopy: "Bez formularzy na tej stronie. Kliknięcie prowadzi bezpośrednio do rejestracji.",
+      valueProfiles: "Profile użytkowników",
+      valueLive: "Czaty LIVE",
+      valueOnline: "Aktywni użytkownicy",
+      socialProof: "{online} online · {profiles} aktywnych profili"
     },
     stats: { kicker: "Aktywność teraz", title: "Dzisiaj dzieje się naprawdę dużo", profiles: "aktywne profile", online: "użytkowników online", videos: "czaty wideo live" },
     content: { kicker: "Profile i LIVE", title: "Dostępne profile i czaty live", subtitle: "Zdjęcia oraz podglądy live są zabezpieczone. Pełny dostęp zostanie odblokowany po rejestracji." },
@@ -51,12 +61,17 @@ const TRANSLATIONS = {
     footer: { note: "18+ | Dyskretny podgląd dating" }
   },
   en: {
-    common: { cta: "Register for free", locked: "Available after registration" },
+    common: { cta: "Register for free", locked: "Available after registration", premium: "Premium" },
+    header: { statusOnline: "{count} online now" },
     hero: {
       kicker: "Private dating area 18+",
       title: "Explore locked profiles and live chats in a premium dating space",
       subtitle: "Preview active profiles, live rooms, and real-time activity. Full access opens after registration.",
-      microcopy: "No forms on this page. Every main action leads straight to registration."
+      microcopy: "No forms on this page. Every main action leads straight to registration.",
+      valueProfiles: "Member profiles",
+      valueLive: "LIVE video chats",
+      valueOnline: "Active members online",
+      socialProof: "{online} online now · {profiles} active profiles"
     },
     stats: { kicker: "Live activity", title: "Fresh activity is happening now", profiles: "active profiles", online: "users online", videos: "live video chats" },
     content: { kicker: "Profiles & LIVE", title: "Available profiles and live chats", subtitle: "Photos and live previews are protected. Full access opens after registration." },
@@ -76,12 +91,17 @@ const TRANSLATIONS = {
     footer: { note: "18+ | Discreet dating preview" }
   },
   fr: {
-    common: { cta: "S'inscrire gratuitement", locked: "Accès après inscription" },
+    common: { cta: "S'inscrire gratuitement", locked: "Accès après inscription", premium: "Premium" },
+    header: { statusOnline: "{count} en ligne" },
     hero: {
       kicker: "Espace dating privé 18+",
       title: "Explorez des profils verrouillés et des chats live dans un univers premium",
       subtitle: "Apercevez les profils actifs, les salons live et l'activité du moment. L'accès complet s'ouvre après l'inscription.",
-      microcopy: "Aucun formulaire ici. Chaque action principale mène directement à l'inscription."
+      microcopy: "Aucun formulaire ici. Chaque action principale mène directement à l'inscription.",
+      valueProfiles: "Profils membres",
+      valueLive: "Chats vidéo LIVE",
+      valueOnline: "Membres actifs en ligne",
+      socialProof: "{online} en ligne · {profiles} profils actifs"
     },
     stats: { kicker: "Activité en direct", title: "L'activité du jour est déjà lancée", profiles: "profils actifs", online: "utilisateurs en ligne", videos: "chats vidéo live" },
     content: { kicker: "Profils & LIVE", title: "Profils disponibles et chats live", subtitle: "Les photos et aperçus live sont protégés. L'accès complet s'ouvre après inscription." },
@@ -101,12 +121,17 @@ const TRANSLATIONS = {
     footer: { note: "18+ | Aperçu dating discret" }
   },
   it: {
-    common: { cta: "Registrati gratis", locked: "Accesso dopo la registrazione" },
+    common: { cta: "Registrati gratis", locked: "Accesso dopo la registrazione", premium: "Premium" },
+    header: { statusOnline: "{count} online ora" },
     hero: {
       kicker: "Area dating privata 18+",
       title: "Scopri profili bloccati e live chat in uno spazio dating premium",
       subtitle: "Guarda profili attivi, anteprime live e attività in tempo reale. L'accesso completo si apre dopo la registrazione.",
-      microcopy: "Nessun modulo in questa pagina. Ogni azione principale porta alla registrazione."
+      microcopy: "Nessun modulo in questa pagina. Ogni azione principale porta alla registrazione.",
+      valueProfiles: "Profili membri",
+      valueLive: "Videochat LIVE",
+      valueOnline: "Membri attivi online",
+      socialProof: "{online} online · {profiles} profili attivi"
     },
     stats: { kicker: "Attività live", title: "Oggi c'è già molta attività", profiles: "profili attivi", online: "utenti online", videos: "videochat live" },
     content: { kicker: "Profili e LIVE", title: "Profili disponibili e live chat", subtitle: "Foto e anteprime live sono protette. L'accesso completo si apre dopo la registrazione." },

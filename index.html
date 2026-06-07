@@ -5,45 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Premium dating prelander with locked profiles and live video chats.">
     <title>VelvetMeet</title>
+    <link rel="preload" href="assets/backgrounds/bg1.svg" as="image" type="image/svg+xml">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div class="page-shell">
-      <header class="site-header">
+      <header class="site-header glass-bar">
         <a class="brand js-register" href="#" aria-label="VelvetMeet">
           <span class="brand-mark">V</span>
           <span class="brand-name">VelvetMeet</span>
         </a>
 
-        <nav class="language-switcher" aria-label="Language selector">
-          <button type="button" data-lang="de">&#x1F1E9;&#x1F1EA; DE</button>
-          <button type="button" data-lang="pl">&#x1F1F5;&#x1F1F1; PL</button>
-          <button type="button" data-lang="en">&#x1F1EC;&#x1F1E7; EN</button>
-          <button type="button" data-lang="fr">&#x1F1EB;&#x1F1F7; FR</button>
-          <button type="button" data-lang="it">&#x1F1EE;&#x1F1F9; IT</button>
-        </nav>
+        <div class="header-status glass-capsule" id="headerStatus" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="headerStatusText"></span>
+        </div>
+
+        <div class="header-actions">
+        <div class="lang-dropdown" id="langDropdown">
+          <button
+            type="button"
+            class="lang-trigger glass-capsule"
+            id="langTrigger"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="langMenu"
+          >
+            <span class="lang-trigger-icon" aria-hidden="true">&#127760;</span>
+            <span class="lang-trigger-code" id="langTriggerCode">EN</span>
+            <span class="lang-trigger-chevron" aria-hidden="true">&#9662;</span>
+          </button>
+          <ul class="lang-menu glass-panel" id="langMenu" role="listbox" hidden>
+            <li role="option" data-lang="de"><span class="lang-flag">&#x1F1E9;&#x1F1EA;</span> Deutsch</li>
+            <li role="option" data-lang="pl"><span class="lang-flag">&#x1F1F5;&#x1F1F1;</span> Polski</li>
+            <li role="option" data-lang="en"><span class="lang-flag">&#x1F1EC;&#x1F1E7;</span> English</li>
+            <li role="option" data-lang="fr"><span class="lang-flag">&#x1F1EB;&#x1F1F7;</span> Fran&ccedil;ais</li>
+            <li role="option" data-lang="it"><span class="lang-flag">&#x1F1EE;&#x1F1F9;</span> Italiano</li>
+          </ul>
+        </div>
+        </div>
       </header>
 
       <main>
-        <section class="hero section-reveal" id="hero">
-          <div class="hero-bg" aria-hidden="true"></div>
+        <section class="hero" id="hero">
+          <div class="hero-bg" aria-hidden="true">
+            <picture id="heroPicture">
+              <source id="heroWebp" type="image/webp">
+              <img id="heroImage" alt="" decoding="async" fetchpriority="high">
+            </picture>
+          </div>
           <div class="hero-noise" aria-hidden="true"></div>
-          <div class="hero-content">
-            <p class="eyebrow" data-i18n="hero.kicker"></p>
-            <h1 data-i18n="hero.title"></h1>
-            <p class="hero-subtitle" data-i18n="hero.subtitle"></p>
-            <div class="hero-actions">
-              <a class="btn btn-primary js-register" href="#" data-i18n="common.cta"></a>
-              <span class="microcopy" data-i18n="hero.microcopy"></span>
+          <div class="hero-inner">
+            <div class="hero-content glass-panel glass-panel--deep">
+              <p class="eyebrow" data-i18n="hero.kicker"></p>
+              <h1 data-i18n="hero.title"></h1>
+              <p class="hero-subtitle" data-i18n="hero.subtitle"></p>
+
+              <ul class="value-chips" aria-label="Included after registration">
+                <li class="value-chip glass-capsule">
+                  <span class="value-chip-icon" aria-hidden="true">&#9679;</span>
+                  <span data-i18n="hero.valueProfiles"></span>
+                </li>
+                <li class="value-chip glass-capsule">
+                  <span class="value-chip-icon value-chip-icon--live" aria-hidden="true">&#9679;</span>
+                  <span data-i18n="hero.valueLive"></span>
+                </li>
+                <li class="value-chip glass-capsule">
+                  <span class="value-chip-icon value-chip-icon--online" aria-hidden="true">&#9679;</span>
+                  <span data-i18n="hero.valueOnline"></span>
+                </li>
+              </ul>
+
+              <div class="hero-actions">
+                <div class="hero-cta-group">
+                  <a class="btn btn-primary js-register" href="#" data-i18n="common.cta"></a>
+                  <p class="social-proof" id="heroSocialProof" aria-live="polite"></p>
+                </div>
+                <span class="microcopy" data-i18n="hero.microcopy"></span>
+              </div>
             </div>
+            <div class="hero-aside" id="heroPreview" aria-hidden="true"></div>
           </div>
         </section>
 
-        <section class="content-wall section-reveal" aria-labelledby="content-title">
+        <section class="content-wall" aria-labelledby="content-title">
           <div class="section-heading dense">
             <p class="eyebrow" data-i18n="content.kicker"></p>
             <h2 id="content-title" data-i18n="content.title"></h2>
-            <p data-i18n="content.subtitle"></p>
+            <p class="section-lead" data-i18n="content.subtitle"></p>
           </div>
           <div class="mixed-grid" id="contentGrid"></div>
         </section>
@@ -54,15 +103,15 @@
             <h2 id="stats-title" data-i18n="stats.title"></h2>
           </div>
           <div class="stats-grid">
-            <article class="stat-card">
+            <article class="stat-card glass-panel">
               <span class="stat-value" data-counter="12840">0</span>
               <span class="stat-label" data-i18n="stats.profiles"></span>
             </article>
-            <article class="stat-card">
+            <article class="stat-card glass-panel">
               <span class="stat-value" data-counter="3916">0</span>
               <span class="stat-label" data-i18n="stats.online"></span>
             </article>
-            <article class="stat-card">
+            <article class="stat-card glass-panel">
               <span class="stat-value" data-counter="724">0</span>
               <span class="stat-label" data-i18n="stats.videos"></span>
             </article>
@@ -75,17 +124,17 @@
             <h2 id="benefits-title" data-i18n="benefits.title"></h2>
           </div>
           <div class="benefit-grid">
-            <article class="benefit-card">
+            <article class="benefit-card glass-panel">
               <span class="benefit-icon">&#10003;</span>
               <h3 data-i18n="benefits.verifiedTitle"></h3>
               <p data-i18n="benefits.verifiedText"></p>
             </article>
-            <article class="benefit-card">
+            <article class="benefit-card glass-panel">
               <span class="benefit-icon">&#9671;</span>
               <h3 data-i18n="benefits.safeTitle"></h3>
               <p data-i18n="benefits.safeText"></p>
             </article>
-            <article class="benefit-card">
+            <article class="benefit-card glass-panel">
               <span class="benefit-icon">&#8599;</span>
               <h3 data-i18n="benefits.fastTitle"></h3>
               <p data-i18n="benefits.fastText"></p>
@@ -93,7 +142,7 @@
           </div>
         </section>
 
-        <section class="final-cta section-reveal">
+        <section class="final-cta section-reveal glass-panel">
           <div>
             <p class="eyebrow" data-i18n="final.kicker"></p>
             <h2 data-i18n="final.title"></h2>
@@ -107,6 +156,10 @@
         <span>&copy; <span id="year"></span> VelvetMeet</span>
         <span data-i18n="footer.note"></span>
       </footer>
+    </div>
+
+    <div class="sticky-cta" id="stickyCta" hidden>
+      <a class="btn btn-primary btn-sticky js-register" href="#" data-i18n="common.cta"></a>
     </div>
 
     <script src="js/config.js"></script>
