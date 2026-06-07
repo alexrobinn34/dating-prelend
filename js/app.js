@@ -188,6 +188,14 @@
     return card;
   }
 
+  function createProfilesMoreInfo() {
+    const block = document.createElement("aside");
+    block.className = "profiles-more-info glass-panel section-reveal";
+    const count = (CONFIG.socialProof?.profiles || 12840).toLocaleString(currentLanguage);
+    block.innerHTML = `<p>${t("content.profilesMore").replace("{count}", count)}</p>`;
+    return block;
+  }
+
   function createInlineCta(variant) {
     const block = document.createElement("aside");
     block.className = `inline-cta inline-cta--${variant} glass-panel section-reveal`;
@@ -255,17 +263,29 @@
     }));
     const videos = shuffle(VIDEOS[currentLanguage]).slice(0, 6).map((video) => ({ type: "video", ...video }));
     const allCards = shuffle([...profiles, ...videos]);
-    const chunks = [
-      allCards.slice(0, 5),
-      allCards.slice(5, 10),
-      allCards.slice(10, 18)
-    ];
+    const isDesktop = window.matchMedia("(min-width: 900px)").matches;
 
-    container.appendChild(renderCardGrid(chunks[0], 0));
-    container.appendChild(createInlineCta("first"));
-    container.appendChild(renderCardGrid(chunks[1], 5));
-    container.appendChild(createInlineCta("second"));
-    container.appendChild(renderCardGrid(chunks[2], 10));
+    if (isDesktop) {
+      const chunks = [
+        allCards.slice(0, 5),
+        allCards.slice(5, 10),
+        allCards.slice(10, 18)
+      ];
+
+      container.appendChild(renderCardGrid(chunks[0], 0));
+      container.appendChild(createInlineCta("first"));
+      container.appendChild(renderCardGrid(chunks[1], 5));
+      container.appendChild(createInlineCta("second"));
+      container.appendChild(renderCardGrid(chunks[2], 10));
+    } else {
+      const mobileCards = allCards.slice(0, 8);
+
+      container.appendChild(renderCardGrid(mobileCards.slice(0, 4), 0));
+      container.appendChild(createInlineCta("first"));
+      container.appendChild(renderCardGrid(mobileCards.slice(4, 8), 4));
+      container.appendChild(createInlineCta("second"));
+      container.appendChild(createProfilesMoreInfo());
+    }
 
     bindRegisterLinks();
     revealSections(container);

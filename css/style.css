@@ -58,6 +58,23 @@ article {
   -webkit-tap-highlight-color: transparent;
 }
 
+h1,
+h2,
+h3,
+h4,
+strong,
+.benefit-card h3,
+.lock-overlay strong,
+.card-meta strong,
+.inline-cta-title,
+.inline-cta-subtitle,
+.stat-label {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -582,6 +599,23 @@ main > .content-wall {
   background: linear-gradient(148deg, rgba(57, 208, 194, 0.08), rgba(255, 255, 255, 0.04));
 }
 
+.profiles-more-info {
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  text-align: center;
+}
+
+.profiles-more-info p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
 .section-heading {
   display: grid;
   gap: 0.4rem;
@@ -616,6 +650,12 @@ main > .content-wall {
 
 .mixed-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.mixed-grid .mixed-card {
+  grid-column: auto;
+  min-width: 0;
 }
 
 .mixed-card {
@@ -627,6 +667,8 @@ main > .content-wall {
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.02));
   box-shadow: var(--glow), var(--shadow-depth), var(--shadow-soft);
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
   transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease;
   animation: cardIn 0.55s ease both;
 }
@@ -774,6 +816,8 @@ main > .content-wall {
   font-weight: 600;
   line-height: 1.25;
   opacity: 0.92;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .card-meta {
@@ -1108,6 +1152,41 @@ main > .content-wall {
     padding: 0.38rem 0.55rem;
     font-size: 0.72rem;
   }
+
+  .final-cta {
+    gap: 0.85rem;
+    padding: 1.15rem 1rem;
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+
+  .final-cta-copy {
+    width: 100%;
+  }
+
+  .final-cta-copy h2 {
+    font-size: clamp(1.2rem, 5.2vw, 1.65rem);
+    line-height: 1.22;
+    margin: 0;
+  }
+
+  .final-cta p:not(.eyebrow) {
+    margin-top: 0.45rem;
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
+  }
+
+  .final-cta-action {
+    width: 100%;
+  }
+
+  .btn-final {
+    box-sizing: border-box;
+    padding-inline: 1rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+  }
 }
 
 @media (min-width: 560px) {
@@ -1142,11 +1221,6 @@ main > .content-wall {
   .stats-grid,
   .benefit-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .mixed-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.6rem;
   }
 
   main > section:not(.hero) {

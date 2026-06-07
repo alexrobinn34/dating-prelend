@@ -14,7 +14,7 @@ const TRANSLATIONS = {
       socialProof: "{online} online · {profiles} aktive Profile"
     },
     stats: { kicker: "Aktivität jetzt", title: "Heute ist bereits viel los", profiles: "aktive Profile", online: "Nutzer online", videos: "Live-Videochats" },
-    content: { kicker: "Profile & LIVE", title: "Verfügbare Profile und Live-Chats", subtitle: "Fotos und Live-Vorschauen sind geschützt. Voller Zugang wird nach der Registrierung freigeschaltet." },
+    content: { kicker: "Profile & LIVE", title: "Verfügbare Profile und Live-Chats", subtitle: "Fotos und Live-Vorschauen sind geschützt. Voller Zugang wird nach der Registrierung freigeschaltet.", profilesMore: "{count} Profile nach Registrierung verfügbar" },
     inlineCta: {
       first: { title: "Tausende aktive Mitglieder sind gerade online", subtitle: "Voller Zugang wird nach der Registrierung freigeschaltet.", cta: "Kostenlos registrieren" },
       second: { title: "Hunderte Live-Videochats verfügbar", subtitle: "Private Räume und vollständige Profile freischalten.", cta: "Zugang öffnen" }
@@ -48,7 +48,7 @@ const TRANSLATIONS = {
       socialProof: "{online} online · {profiles} aktywnych profili"
     },
     stats: { kicker: "Aktywność teraz", title: "Dzisiaj dzieje się naprawdę dużo", profiles: "aktywne profile", online: "użytkowników online", videos: "czaty wideo live" },
-    content: { kicker: "Profile i LIVE", title: "Dostępne profile i czaty live", subtitle: "Zdjęcia oraz podglądy live są zabezpieczone. Pełny dostęp zostanie odblokowany po rejestracji." },
+    content: { kicker: "Profile i LIVE", title: "Dostępne profile i czaty live", subtitle: "Zdjęcia oraz podglądy live są zabezpieczone. Pełny dostęp zostanie odblokowany po rejestracji.", profilesMore: "{count} profili dostępnych po rejestracji" },
     inlineCta: {
       first: { title: "Tysiące aktywnych użytkowników jest teraz online", subtitle: "Pełny dostęp odblokujesz po rejestracji.", cta: "Zarejestruj się za darmo" },
       second: { title: "Setki czatów wideo na żywo", subtitle: "Odblokuj prywatne pokoje i pełne profile.", cta: "Otwórz dostęp" }
@@ -82,7 +82,7 @@ const TRANSLATIONS = {
       socialProof: "{online} online now · {profiles} active profiles"
     },
     stats: { kicker: "Live activity", title: "Fresh activity is happening now", profiles: "active profiles", online: "users online", videos: "live video chats" },
-    content: { kicker: "Profiles & LIVE", title: "Available profiles and live chats", subtitle: "Photos and live previews are protected. Full access opens after registration." },
+    content: { kicker: "Profiles & LIVE", title: "Available profiles and live chats", subtitle: "Photos and live previews are protected. Full access opens after registration.", profilesMore: "{count} profiles available after registration" },
     inlineCta: {
       first: { title: "Thousands of active members online now", subtitle: "Full access unlocks after registration.", cta: "Register for Free" },
       second: { title: "Hundreds of live video chats available", subtitle: "Unlock private rooms and full profiles.", cta: "Open Access" }
@@ -116,7 +116,7 @@ const TRANSLATIONS = {
       socialProof: "{online} en ligne · {profiles} profils actifs"
     },
     stats: { kicker: "Activité en direct", title: "L'activité du jour est déjà lancée", profiles: "profils actifs", online: "utilisateurs en ligne", videos: "chats vidéo live" },
-    content: { kicker: "Profils & LIVE", title: "Profils disponibles et chats live", subtitle: "Les photos et aperçus live sont protégés. L'accès complet s'ouvre après inscription." },
+    content: { kicker: "Profils & LIVE", title: "Profils disponibles et chats live", subtitle: "Les photos et aperçus live sont protégés. L'accès complet s'ouvre après inscription.", profilesMore: "{count} profils disponibles après inscription" },
     inlineCta: {
       first: { title: "Des milliers de membres actifs en ligne", subtitle: "L'accès complet s'ouvre après l'inscription.", cta: "S'inscrire gratuitement" },
       second: { title: "Des centaines de chats vidéo live", subtitle: "Déverrouillez les salons privés et les profils complets.", cta: "Ouvrir l'accès" }
@@ -150,7 +150,7 @@ const TRANSLATIONS = {
       socialProof: "{online} online · {profiles} profili attivi"
     },
     stats: { kicker: "Attività live", title: "Oggi c'è già molta attività", profiles: "profili attivi", online: "utenti online", videos: "videochat live" },
-    content: { kicker: "Profili e LIVE", title: "Profili disponibili e live chat", subtitle: "Foto e anteprime live sono protette. L'accesso completo si apre dopo la registrazione." },
+    content: { kicker: "Profili e LIVE", title: "Profili disponibili e live chat", subtitle: "Foto e anteprime live sono protette. L'accesso completo si apre dopo la registrazione.", profilesMore: "{count} profili disponibili dopo la registrazione" },
     inlineCta: {
       first: { title: "Migliaia di membri attivi online ora", subtitle: "L'accesso completo si apre dopo la registrazione.", cta: "Registrati gratis" },
       second: { title: "Centinaia di videochat live disponibili", subtitle: "Sblocca stanze private e profili completi.", cta: "Apri l'accesso" }
