@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Premium dating prelander with locked profiles and live video chats.">
     <title>VelvetMeet</title>
+    <link rel="preload" href="assets/backgrounds/bg1.webp" as="image" type="image/webp">
     <link rel="preload" href="assets/backgrounds/bg1.svg" as="image" type="image/svg+xml">
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -77,11 +78,8 @@
               </ul>
 
               <div class="hero-actions">
-                <div class="hero-cta-group">
-                  <a class="btn btn-primary js-register" href="#" data-i18n="common.cta"></a>
-                  <p class="social-proof" id="heroSocialProof" aria-live="polite"></p>
-                </div>
-                <span class="microcopy" data-i18n="hero.microcopy"></span>
+                <a class="btn btn-primary js-register" href="#" data-i18n="common.cta"></a>
+                <span class="microcopy microcopy--desktop" data-i18n="hero.microcopy"></span>
               </div>
             </div>
             <div class="hero-aside" id="heroPreview" aria-hidden="true"></div>
@@ -143,12 +141,14 @@
         </section>
 
         <section class="final-cta section-reveal glass-panel">
-          <div>
+          <div class="final-cta-copy">
             <p class="eyebrow" data-i18n="final.kicker"></p>
             <h2 data-i18n="final.title"></h2>
             <p data-i18n="final.subtitle"></p>
           </div>
-          <a class="btn btn-primary js-register" href="#" data-i18n="common.cta"></a>
+          <div class="final-cta-action">
+            <a class="btn btn-primary btn-final js-register" href="#" data-i18n="common.cta"></a>
+          </div>
         </section>
       </main>
 

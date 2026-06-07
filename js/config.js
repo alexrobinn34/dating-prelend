@@ -3,6 +3,10 @@ const CONFIG = {
   // ВСТАВЬТЕ СВОЮ ССЫЛКУ РЕГИСТРАЦИИ
   registrationUrl: "PASTE_YOUR_LINK_HERE",
 
+  // Preconnect к домену регистрации (ускоряет переход). Оставьте пустым, пока URL не финализирован.
+  // Пример: "https://example.com" или null для авто-извлечения из registrationUrl
+  preconnectUrl: null,
+
   // A/B-тестирование фонов hero: добавьте варианты и смените backgroundImageIndex.
   // Для WebP положите файл рядом с fallback (например bg1.webp + bg1.jpg).
   backgroundImages: [

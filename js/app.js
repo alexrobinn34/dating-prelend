@@ -21,23 +21,18 @@
     if (isSupportedLanguage(saved)) return saved;
     if (saved) localStorage.removeItem("vm_language");
 
-    // Используем только основной язык браузера (navigator.language).
-    // Не перебираем navigator.languages целиком — иначе при uk + fr в списке
-    // откроется французский вместо английского fallback.
+    // Только primary locale (navigator.language). Вторичные предпочтения игнорируем.
     const primary = normalizeLangCode(navigator.language);
     if (isSupportedLanguage(primary)) return primary;
-
-    if (Array.isArray(navigator.languages)) {
-      for (const raw of navigator.languages) {
-        const code = normalizeLangCode(raw);
-        if (code === DEFAULT_LANGUAGE) return DEFAULT_LANGUAGE;
-      }
-    }
 
     return DEFAULT_LANGUAGE;
   }
 
   function ensureValidLanguage() {
+    const saved = localStorage.getItem("vm_language");
+    if (saved && !isSupportedLanguage(saved)) {
+      localStorage.removeItem("vm_language");
+    }
     if (!isSupportedLanguage(currentLanguage) || !TRANSLATIONS[currentLanguage]) {
       currentLanguage = DEFAULT_LANGUAGE;
     }
@@ -74,8 +69,10 @@
     }
 
     heroImage.addEventListener("error", () => {
+      if (heroImage.dataset.fallbackTried) return;
+      heroImage.dataset.fallbackTried = "true";
       webpSource.removeAttribute("srcset");
-      heroImage.removeAttribute("src");
+      if (asset.fallback) heroImage.src = asset.fallback;
     }, { once: true });
   }
 
@@ -98,20 +95,31 @@
     });
   }
 
-  function applyConfig() {
-    applyHeroBackground();
-    bindRegisterLinks();
+  function applyPreconnect() {
+    let url = CONFIG.preconnectUrl;
+    if (!url && CONFIG.registrationUrl && CONFIG.registrationUrl !== "PASTE_YOUR_LINK_HERE") {
+      try {
+        url = new URL(CONFIG.registrationUrl).origin;
+      } catch {
+        url = null;
+      }
+    }
+    if (!url) return;
+
+    const existing = document.querySelector(`link[rel="preconnect"][href="${url}"]`);
+    if (existing) return;
+
+    const link = document.createElement("link");
+    link.rel = "preconnect";
+    link.href = url;
+    link.crossOrigin = "anonymous";
+    document.head.appendChild(link);
   }
 
-  function renderSocialProof() {
-    const el = document.getElementById("heroSocialProof");
-    if (!el || !CONFIG.socialProof) return;
-
-    const online = CONFIG.socialProof.online.toLocaleString(currentLanguage);
-    const profiles = CONFIG.socialProof.profiles.toLocaleString(currentLanguage);
-    el.textContent = t("hero.socialProof")
-      .replace("{online}", online)
-      .replace("{profiles}", profiles);
+  function applyConfig() {
+    applyHeroBackground();
+    applyPreconnect();
+    bindRegisterLinks();
   }
 
   function renderHeaderStatus() {
@@ -168,7 +176,6 @@
       item.setAttribute("aria-selected", isActive ? "true" : "false");
     });
 
-    renderSocialProof();
     renderHeaderStatus();
   }
 
@@ -196,17 +203,47 @@
     return block;
   }
 
+  function balancePartialGridRow(grid, count, columns) {
+    const remainder = count % columns;
+    if (remainder === 0) return;
+
+    const offset = Math.floor((columns - remainder) / 2) + 1;
+    const cards = grid.querySelectorAll(".mixed-card");
+    const startIdx = count - remainder;
+
+    cards.forEach((card, index) => {
+      if (index >= startIdx) {
+        card.style.gridColumn = String(offset + (index - startIdx));
+      }
+    });
+  }
+
   function renderCardGrid(items, animationOffset) {
     const grid = document.createElement("div");
     grid.className = "mixed-grid";
+    grid.dataset.count = String(items.length);
     items.forEach((item, index) => {
       grid.appendChild(createCard(item, animationOffset + index));
     });
+
+    if (window.matchMedia("(min-width: 900px)").matches) {
+      balancePartialGridRow(grid, items.length, 5);
+    }
+
     return grid;
+  }
+
+  function clearRevealBindings(root) {
+    if (!revealObserver) return;
+    root.querySelectorAll("[data-reveal-bound]").forEach((el) => {
+      revealObserver.unobserve(el);
+      delete el.dataset.revealBound;
+    });
   }
 
   function renderContentWall() {
     const container = document.getElementById("contentSections");
+    clearRevealBindings(container);
     container.innerHTML = "";
 
     const profileVariants = ["profile-variant-rose", "profile-variant-teal", "profile-variant-amber"];
@@ -219,19 +256,19 @@
     const videos = shuffle(VIDEOS[currentLanguage]).slice(0, 6).map((video) => ({ type: "video", ...video }));
     const allCards = shuffle([...profiles, ...videos]);
     const chunks = [
-      allCards.slice(0, 6),
-      allCards.slice(6, 12),
-      allCards.slice(12, 18)
+      allCards.slice(0, 5),
+      allCards.slice(5, 10),
+      allCards.slice(10, 18)
     ];
 
     container.appendChild(renderCardGrid(chunks[0], 0));
     container.appendChild(createInlineCta("first"));
-    container.appendChild(renderCardGrid(chunks[1], 6));
+    container.appendChild(renderCardGrid(chunks[1], 5));
     container.appendChild(createInlineCta("second"));
-    container.appendChild(renderCardGrid(chunks[2], 12));
+    container.appendChild(renderCardGrid(chunks[2], 10));
 
     bindRegisterLinks();
-    revealSections();
+    revealSections(container);
     renderHeroPreview();
   }
 
