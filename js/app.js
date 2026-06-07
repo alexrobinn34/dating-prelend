@@ -1,17 +1,46 @@
 (function () {
   const supportedLanguages = ["de", "pl", "en", "fr", "it"];
+  const DEFAULT_LANGUAGE = "en";
   const langCodes = { de: "DE", pl: "PL", en: "EN", fr: "FR", it: "IT" };
   let currentLanguage = detectLanguage();
 
   const t = (path) => path.split(".").reduce((value, key) => value && value[key], TRANSLATIONS[currentLanguage]) || path;
   const registerLinks = () => document.querySelectorAll(".js-register");
 
+  function normalizeLangCode(raw) {
+    if (!raw || typeof raw !== "string") return null;
+    return raw.toLowerCase().split("-")[0].slice(0, 2);
+  }
+
+  function isSupportedLanguage(code) {
+    return Boolean(code && supportedLanguages.includes(code));
+  }
+
   function detectLanguage() {
     const saved = localStorage.getItem("vm_language");
-    if (supportedLanguages.includes(saved)) return saved;
+    if (isSupportedLanguage(saved)) return saved;
+    if (saved) localStorage.removeItem("vm_language");
 
-    const browserLanguage = (navigator.language || "en").slice(0, 2).toLowerCase();
-    return supportedLanguages.includes(browserLanguage) && browserLanguage !== "en" ? browserLanguage : "en";
+    // Используем только основной язык браузера (navigator.language).
+    // Не перебираем navigator.languages целиком — иначе при uk + fr в списке
+    // откроется французский вместо английского fallback.
+    const primary = normalizeLangCode(navigator.language);
+    if (isSupportedLanguage(primary)) return primary;
+
+    if (Array.isArray(navigator.languages)) {
+      for (const raw of navigator.languages) {
+        const code = normalizeLangCode(raw);
+        if (code === DEFAULT_LANGUAGE) return DEFAULT_LANGUAGE;
+      }
+    }
+
+    return DEFAULT_LANGUAGE;
+  }
+
+  function ensureValidLanguage() {
+    if (!isSupportedLanguage(currentLanguage) || !TRANSLATIONS[currentLanguage]) {
+      currentLanguage = DEFAULT_LANGUAGE;
+    }
   }
 
   function shuffle(items) {
@@ -50,20 +79,28 @@
     }, { once: true });
   }
 
-  function applyConfig() {
-    applyHeroBackground();
+  function handleRegisterClick(event) {
+    if (!CONFIG.registrationUrl || CONFIG.registrationUrl === "PASTE_YOUR_LINK_HERE") {
+      event.preventDefault();
+      console.info("ВСТАВЬТЕ СВОЮ ССЫЛКУ РЕГИСТРАЦИИ в js/config.js");
+      return;
+    }
+    event.preventDefault();
+    window.location.href = CONFIG.registrationUrl;
+  }
+
+  function bindRegisterLinks() {
     registerLinks().forEach((link) => {
       link.setAttribute("href", CONFIG.registrationUrl);
-      link.addEventListener("click", (event) => {
-        if (!CONFIG.registrationUrl || CONFIG.registrationUrl === "PASTE_YOUR_LINK_HERE") {
-          event.preventDefault();
-          console.info("ВСТАВЬТЕ СВОЮ ССЫЛКУ РЕГИСТРАЦИИ в js/config.js");
-          return;
-        }
-        event.preventDefault();
-        window.location.href = CONFIG.registrationUrl;
-      });
+      if (link.dataset.registerBound) return;
+      link.dataset.registerBound = "true";
+      link.addEventListener("click", handleRegisterClick);
     });
+  }
+
+  function applyConfig() {
+    applyHeroBackground();
+    bindRegisterLinks();
   }
 
   function renderSocialProof() {
@@ -135,9 +172,42 @@
     renderHeaderStatus();
   }
 
+  function createCard(item, animationIndex) {
+    let card;
+    if (item.type === "video") card = createVideoCard(item);
+    else if (item.isPremium) card = createPremiumCard(item);
+    else card = createProfileCard(item);
+    card.style.animationDelay = `${Math.min(animationIndex * 0.04, 0.36)}s`;
+    return card;
+  }
+
+  function createInlineCta(variant) {
+    const block = document.createElement("aside");
+    block.className = `inline-cta inline-cta--${variant} glass-panel section-reveal`;
+    const icon = variant === "first" ? "&#128293;" : "&#128172;";
+    block.innerHTML = `
+      <div class="inline-cta-content">
+        <p class="inline-cta-title">${icon} ${t(`inlineCta.${variant}.title`)}</p>
+        <p class="inline-cta-subtitle">${t(`inlineCta.${variant}.subtitle`)}</p>
+      </div>
+      <a class="btn btn-primary btn-inline-cta js-register" href="#">${t(`inlineCta.${variant}.cta`)}</a>
+    `;
+    attachRegisterAction(block.querySelector(".btn-inline-cta"));
+    return block;
+  }
+
+  function renderCardGrid(items, animationOffset) {
+    const grid = document.createElement("div");
+    grid.className = "mixed-grid";
+    items.forEach((item, index) => {
+      grid.appendChild(createCard(item, animationOffset + index));
+    });
+    return grid;
+  }
+
   function renderContentWall() {
-    const grid = document.getElementById("contentGrid");
-    grid.innerHTML = "";
+    const container = document.getElementById("contentSections");
+    container.innerHTML = "";
 
     const profileVariants = ["profile-variant-rose", "profile-variant-teal", "profile-variant-amber"];
     const profiles = shuffle(PROFILES[currentLanguage]).slice(0, 12).map((profile, index) => ({
@@ -147,15 +217,21 @@
       ...profile
     }));
     const videos = shuffle(VIDEOS[currentLanguage]).slice(0, 6).map((video) => ({ type: "video", ...video }));
-    shuffle([...profiles, ...videos]).forEach((item, index) => {
-      let card;
-      if (item.type === "video") card = createVideoCard(item);
-      else if (item.isPremium) card = createPremiumCard(item);
-      else card = createProfileCard(item);
-      card.style.animationDelay = `${Math.min(index * 0.04, 0.36)}s`;
-      grid.appendChild(card);
-    });
+    const allCards = shuffle([...profiles, ...videos]);
+    const chunks = [
+      allCards.slice(0, 6),
+      allCards.slice(6, 12),
+      allCards.slice(12, 18)
+    ];
 
+    container.appendChild(renderCardGrid(chunks[0], 0));
+    container.appendChild(createInlineCta("first"));
+    container.appendChild(renderCardGrid(chunks[1], 6));
+    container.appendChild(createInlineCta("second"));
+    container.appendChild(renderCardGrid(chunks[2], 12));
+
+    bindRegisterLinks();
+    revealSections();
     renderHeroPreview();
   }
 
@@ -260,14 +336,21 @@
     counters.forEach((counter) => observer.observe(counter));
   }
 
-  function revealSections() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("is-visible");
-      });
-    }, { threshold: 0.08 });
+  let revealObserver;
 
-    document.querySelectorAll(".section-reveal").forEach((section) => observer.observe(section));
+  function revealSections(root = document) {
+    if (!revealObserver) {
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("is-visible");
+        });
+      }, { threshold: 0.08 });
+    }
+
+    root.querySelectorAll(".section-reveal:not([data-reveal-bound])").forEach((section) => {
+      section.dataset.revealBound = "true";
+      revealObserver.observe(section);
+    });
   }
 
   function bindLanguageDropdown() {
@@ -339,6 +422,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("year").textContent = new Date().getFullYear();
+    ensureValidLanguage();
     applyConfig();
     renderTranslations();
     renderContentWall();
