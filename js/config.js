@@ -1,7 +1,7 @@
 // Основные настройки проекта.
 const CONFIG = {
   // ВСТАВЬТЕ СВОЮ ССЫЛКУ РЕГИСТРАЦИИ
-  registrationUrl: "PASTE_YOUR_LINK_HERE",
+  registrationUrl: "https://go.cm-trk6.com/aff_f?h=rA47F6&aff_sub5=free-social",
 
   // Preconnect к домену регистрации (ускоряет переход). Оставьте пустым, пока URL не финализирован.
   // Пример: "https://example.com" или null для авто-извлечения из registrationUrl
