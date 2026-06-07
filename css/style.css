@@ -1454,6 +1454,25 @@ main > .content-wall {
     gap: 1.5rem 2rem;
     padding: 1.75rem 2rem;
     align-items: center;
+    overflow: hidden;
+  }
+
+  .final-cta-copy {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .final-cta-copy h2 {
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
+    line-height: 1.22;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .final-cta p:not(.eyebrow) {
+    overflow-wrap: break-word;
+    word-break: normal;
+    max-width: 100%;
   }
 
   .final-cta-action {
@@ -1464,7 +1483,10 @@ main > .content-wall {
   .btn-final {
     width: auto;
     min-width: 11rem;
-    white-space: nowrap;
+    max-width: 14rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
   }
 
   .site-footer {
