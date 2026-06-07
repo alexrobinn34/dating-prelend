@@ -43,6 +43,6 @@ Object.keys(PROFILES).forEach((lang) => {
     name: item[0],
     age: item[1],
     city: item[2],
-    photo: `assets/profiles/profile-${String((index % 12) + 1).padStart(2, "0")}.svg`
+    photo: `assets/profiles/profile-${String((index % 12) + 1).padStart(2, "0")}.webp`
   }));
 });
